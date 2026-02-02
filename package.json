@@ -5,9 +5,16 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "changelog:generate": "conventional-changelog -p conventionalcommits -i CHANGELOG.md -s -r 0",
+    "changelog:release": "npm run changelog:generate && git add CHANGELOG.md && git commit -m \"chore: update changelog\" || echo \"No changelog changes\"",
+    "check:changelog": "node scripts/check-changelog.mjs",
     "start": "next start",
     "lint": "eslint",
     "ts": "tsc --noEmit",
+    "release:major": "node ./scripts/release-bump.mjs major",
+    "release:minor": "node ./scripts/release-bump.mjs minor",
+    "release:patch": "node ./scripts/release-bump.mjs patch",
+    "version:next": "npm run release:patch",
     "verify": "npm run lint && npm run ts && npm run build"
   },
   "dependencies": {
@@ -21,6 +28,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "babel-plugin-react-compiler": "1.0.0",
+    "conventional-changelog": "^7.1.1",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
     "tailwindcss": "^4",

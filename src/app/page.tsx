@@ -152,6 +152,24 @@ const digitalHighlights = [
   },
 ];
 
+const projectSummaries = [
+  {
+    title: "Restaurang • Södermalm",
+    location: "Totalrenovering med nytt kök och bar",
+    result: "Nyckelfärdigt i 8 veckor, fokus på hygien och workflow.",
+  },
+  {
+    title: "Lägenhet • Vasastan",
+    location: "Öppen planlösning, skräddarsydd snickeri",
+    result: "Badrum, kök och skjutdörrar levererade med passform.",
+  },
+  {
+    title: "Kontorsyta • Hammarby",
+    location: "Wi-fi, el, och miljöcertifiering",
+    result: "Minskad energiförbrukning och framdrift i tid.",
+  },
+];
+
 function SpotlightCard({
   title,
   desc,
@@ -277,37 +295,15 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="relative">
-                <div className="rounded-3xl border border-white/20 bg-black/50 p-4 shadow-[0_35px_70px_rgba(15,23,42,0.75)]">
-                  <div className="rounded-2xl border border-white/10 bg-gradient-to-b from-white/10 to-transparent p-6">
-                    <div className="text-xs font-semibold uppercase tracking-[0.3em] text-white/60">
-                      Projektöversikt
-                    </div>
-                    <div className="mt-2 text-lg font-semibold">
-                      Restaurangkök • Totalrenovering
-                    </div>
-                    <div className="mt-4 grid grid-cols-2 gap-3">
-                      <div className="rounded-2xl bg-white/5 p-4">
-                        <div className="text-xs text-white/60">Omfattning</div>
-                        <div className="mt-1 font-semibold">Riv, el, VVS, ytskikt</div>
-                      </div>
-                      <div className="rounded-2xl bg-white/5 p-4">
-                        <div className="text-xs text-white/60">Tid</div>
-                        <div className="mt-1 font-semibold">4-6 veckor</div>
-                      </div>
-                      <div className="rounded-2xl bg-white/5 p-4">
-                        <div className="text-xs text-white/60">Leverans</div>
-                        <div className="mt-1 font-semibold">Nyckelfärdigt</div>
-                      </div>
-                      <div className="rounded-2xl bg-white/5 p-4">
-                        <div className="text-xs text-white/60">Fokus</div>
-                        <div className="mt-1 font-semibold">Hygien & finish</div>
-                      </div>
-                    </div>
-                    <div className="mt-4 rounded-2xl border border-white/10 bg-white/10 p-4 text-sm text-white/70">
-                    &ldquo;Snyggt arbete och bra kommunikation hela vägen.&rdquo;
-                    </div>
+              <div className="relative w-full max-w-[520px]">
+                <div className="relative rounded-[32px] border border-white/20 bg-black/70 p-4 shadow-[0_45px_90px_rgba(15,23,42,0.75)]">
+                  <div className="pointer-events-none absolute inset-x-4 top-4 h-20 rounded-[28px] bg-[radial-gradient(circle,_rgba(244,63,94,0.35),_transparent_65%)] blur-3xl opacity-80" />
+                  <div className="relative">
+                    <ProjectCarousel />
                   </div>
+                </div>
+                <div className="mt-3 text-center text-xs uppercase tracking-[0.4em] text-orange-200">
+                  Före & efter – hero showcase
                 </div>
               </div>
             </div>
@@ -412,19 +408,36 @@ export default function Home() {
         </Container>
       </section>
 
-      <section id="projekt" className="py-14 sm:py-20 bg-slate-950">
+      <section
+        id="projekt"
+        className="py-14 sm:py-20 bg-slate-950 border-y border-white/10"
+      >
         <Container>
           <SectionTitle
             eyebrow="Referenser"
-            title="Före & efter"
-            subtitle="Dra i reglaget för att se skillnaden. Exempelbilder används tills riktiga projekt är fotograferade."
+            title="Hero-showcase & fler case"
+            subtitle="Före/efter-övergångarna ovan speglar verkliga projekt. Här är ett urval av våra leveranser."
             eyebrowClass="text-sm font-semibold uppercase tracking-[0.3em] text-white/70"
             titleClass="mt-2 text-3xl font-semibold tracking-tight text-white sm:text-4xl"
             subtitleClass="mt-3 text-white/70"
           />
 
-          <div className="mt-8 rounded-3xl border border-white/10 bg-gradient-to-br from-white/10 via-white/5 to-transparent p-6 shadow-[0_40px_80px_rgba(15,23,42,0.7)]">
-            <ProjectCarousel />
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
+            {projectSummaries.map((project) => (
+              <div
+                key={project.title}
+                className="rounded-3xl border border-white/10 bg-gradient-to-br from-white/5 via-white/0 to-transparent p-6 text-white shadow-[0_25px_55px_rgba(15,23,42,0.6)] transition hover:-translate-y-1"
+              >
+                <div className="text-xs uppercase tracking-[0.3em] text-orange-200">
+                  {project.location}
+                </div>
+                <h3 className="mt-3 text-xl font-semibold">{project.title}</h3>
+                <p className="mt-2 text-sm text-white/70">{project.result}</p>
+                <div className="mt-4 text-[0.75rem] text-white/50">
+                  Offert inom 48 timmar • hållbar finish • tidssäker kommunikation
+                </div>
+              </div>
+            ))}
           </div>
         </Container>
       </section>
